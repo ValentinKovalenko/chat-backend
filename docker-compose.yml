@@ -1,0 +1,18 @@
+# Node.js 12.20.1 LTS is used instead of 14.15.4 LTS due to this issue https://github.com/vendure-ecommerce/vendure/issues/461
+
+version: "3"
+services:
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: chat
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+volumes:
+  node-modules: {}
+  pg-data: {}
