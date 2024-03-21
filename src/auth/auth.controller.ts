@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { BadRequestException, Body, Controller, Post } from "@nestjs/common";
 import { AuthService } from './auth.service';
 import { CreateUserDto } from '../user/dto/create-user.dto';
 import { UserLoginDto } from './dto/login-user.dto';
@@ -15,6 +15,7 @@ export class AuthController {
 
   @Post('login')
   login(@Body() dto: UserLoginDto): Promise<AuthUserResponse> {
+    if (!dto.email) throw new BadRequestException('error');
     return this.authService.loginUser(dto);
   }
 }
